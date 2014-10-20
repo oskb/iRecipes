@@ -18,13 +18,7 @@ class EditDescriptionInstructionView : BaseEditView
         self.backgroundColor = UIColor.whiteColor()
         
         super.addNameLabel(name)
-        
-        self.textView.frame = CGRectMake(10.0, 80.0, self.frame.size.width - 20.0, self.frame.size.height - 80.0)
-        self.textView.textAlignment = NSTextAlignment.Center
-        self.textView.textColor = self.textView.tintColor
-        self.textView.font = UIFont(name: "AmericanTypeWriter", size: 18.0)
-        self.textView.editable = true
-        self.addSubview(self.textView)
+        self.addTextView()
         
         if let textString = text
         {
@@ -32,6 +26,16 @@ class EditDescriptionInstructionView : BaseEditView
         }
         
         self.addDoneButton()
+    }
+    
+    private func addTextView()
+    {
+        self.textView.frame = CGRectMake(10.0, 80.0, self.frame.size.width - 20.0, self.frame.size.height - 80.0)
+        self.textView.textAlignment = NSTextAlignment.Center
+        self.textView.textColor = self.textView.tintColor
+        self.textView.font = UIFont(name: "AmericanTypeWriter", size: 18.0)
+        self.textView.editable = true
+        self.addSubview(self.textView)
     }
     
     private func addDoneButton()

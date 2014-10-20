@@ -52,6 +52,7 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
         
         self.addNavigationBarButtons()
         self.addScrollView()
+        self.addPageControl()
         self.addPhotoView()
         self.addNameView()
         self.addDifficultyView()
@@ -79,7 +80,10 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
         self.scrollView.delaysContentTouches = true
         self.scrollView.showsHorizontalScrollIndicator = false
         self.view.addSubview(self.scrollView)
-        
+    }
+    
+    private func addPageControl()
+    {
         self.pageControl.frame = CGRectMake(0.0, self.scrollView.frame.size.height, self.scrollView.frame.size.width, 50.0)
         self.pageControl.numberOfPages = 5
         self.pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()

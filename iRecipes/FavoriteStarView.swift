@@ -31,18 +31,18 @@ class FavoriteStarView : UIView
     func rotateStarAndSetNewColor(color : UIColor)
     {
         let rotationDegrees = self.degreesToRadians(180.0)
-        var transformRotated = CATransform3DIdentity
-        transformRotated.m34 = -0.005
-        transformRotated = CATransform3DRotate(transformRotated, rotationDegrees, 0, 1, 0)
-        transformRotated = CATransform3DScale(transformRotated, 1.8, 1.8, 1.8)
+        var rotatedAndScaledTransform = CATransform3DIdentity
+        rotatedAndScaledTransform.m34 = -0.005
+        rotatedAndScaledTransform = CATransform3DRotate(rotatedAndScaledTransform, rotationDegrees, 0, 1, 0)
+        rotatedAndScaledTransform = CATransform3DScale(rotatedAndScaledTransform, 1.8, 1.8, 1.8)
         
         UIView.animateWithDuration(0.4, animations: { () -> Void in
             
-            self.layer.transform = transformRotated
+            self.layer.transform = rotatedAndScaledTransform
             
             }) { (Bool) -> Void in
                 
-                self.replaceStarLayerAndSetColor(color, transform: transformRotated)
+                self.replaceStarLayerAndSetColor(color, transform: rotatedAndScaledTransform)
                 
                 UIView.animateWithDuration(0.4, animations: { () -> Void in
                     
