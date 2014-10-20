@@ -29,15 +29,15 @@ class DataManager
     
     init()
     {
-        self.sessionManager.requestSerializer = AFJSONRequestSerializer()
-        self.sessionManager.responseSerializer = AFJSONResponseSerializer()
+        self.sessionManager.requestSerializer = AFJSONRequestSerializer() as AFJSONRequestSerializer
+        self.sessionManager.responseSerializer = AFJSONResponseSerializer() as AFJSONResponseSerializer
     }
     
     //MARK: WebService
     
     func isDownloadingImageForRecipe(recipe : Recipe) -> Bool
     {
-        let recipeId : NSNumber = NSNumber(integer: recipe.id)
+        let recipeId : NSNumber = NSNumber(integer: recipe.id.integerValue)
         return self.imageDownloadQueue.containsObject(recipeId)
     }
     
@@ -82,14 +82,14 @@ class DataManager
     {
         if !self.isDownloadingImageForRecipe(recipe)
         {
-            let recipeId : NSNumber = NSNumber(integer: recipe.id)
+            let recipeId : NSNumber = NSNumber(integer: recipe.id.integerValue)
             self.imageDownloadQueue.addObject(recipeId)
             self.startNetworkLoadingIndicator()
             
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
                 
-                let request = AFHTTPRequestOperation(request: NSURLRequest(URL: NSURL(string: recipe.url!)))
-                request.responseSerializer = AFImageResponseSerializer()
+                let request = AFHTTPRequestOperation(request: NSURLRequest(URL: NSURL(string: recipe.url!)!))
+                request.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
                 
                 request.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
                     

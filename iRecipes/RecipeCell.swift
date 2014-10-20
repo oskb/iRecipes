@@ -17,12 +17,6 @@ class RecipeCell : UITableViewCell
     private let nameFont = UIFont(name: "AmericanTypeWriter", size: 22.0)
     private let descriptionFont = UIFont(name: "AmericanTypeWriter", size: 13.0)
     
-    override init()
-    {
-        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
-        setupCell()
-    }
-    
     init(reuseIdentifier: String?)
     {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)

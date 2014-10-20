@@ -238,18 +238,20 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             if let imageData = recipe.photo
             {
-                let rawImage = UIImage(data: imageData)
-                let thumbnail = UIImage().thumbnailFromImage(rawImage, scaledToSize: CGSizeMake(120.0, 120.0))
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let rawImage = UIImage(data: imageData)
+                {
+                    let thumbnail = UIImage().thumbnailFromImage(rawImage, scaledToSize: CGSizeMake(120.0, 120.0))
                     
-                    self.imageCache.setObject(thumbnail, forKey: recipe.id)
-                    
-                    if let cell = self.cellForRecipe(recipe)
-                    {
-                        cell.recipeImageView.setImageAnimated(thumbnail)
-                    }
-                })
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        
+                        self.imageCache.setObject(thumbnail, forKey: recipe.id)
+                        
+                        if let cell = self.cellForRecipe(recipe)
+                        {
+                            cell.recipeImageView.setImageAnimated(thumbnail)
+                        }
+                    })
+                }
             }
         }
     }
@@ -367,15 +369,19 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         if searchText != ""
         {
             //If search text is not empty we only fetch the ones matching the search text
-            var predicate = NSPredicate(format: "name contains[cd] %@", searchText)
-            requestPredicate = self.compoundPredicates(requestPredicate, predicate2: predicate)
+            if let predicate = NSPredicate(format: "name contains[cd] %@", searchText)
+            {
+                requestPredicate = self.compoundPredicates(requestPredicate, predicate2: predicate)
+            }
         }
         
         if self.showFavorites
         {
             //If showFavorites is true, we want to only fetch the favorited ones
-            let predicate = NSPredicate(format: "favorite = YES")
-            requestPredicate = self.compoundPredicates(requestPredicate, predicate2: predicate)
+            if let predicate = NSPredicate(format: "favorite = YES")
+            {
+                requestPredicate = self.compoundPredicates(requestPredicate, predicate2: predicate)
+            }
         }
         
         if let predicate = requestPredicate

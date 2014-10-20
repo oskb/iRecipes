@@ -180,14 +180,14 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     
     private func attributedHeaderStringWithText(string : String) -> NSAttributedString
     {
-        return NSAttributedString(string: "\(string)", attributes: [NSForegroundColorAttributeName : self.descriptionInstructionTextView.tintColor,
-            NSFontAttributeName : self.textViewHeaderFont])
+        return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName : self.descriptionInstructionTextView.tintColor,
+            NSFontAttributeName : self.textViewHeaderFont!])
     }
     
-    private func attributedBodyStringWithText(string : String) ->NSAttributedString
+    private func attributedBodyStringWithText(string : String) -> NSAttributedString
     {
-        return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName : UIColor.blackColor(),
-            NSFontAttributeName : self.textViewBodyFont])
+       return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName : UIColor.blackColor(),
+            NSFontAttributeName : self.textViewBodyFont!])
     }
     
     //MARK: Edit

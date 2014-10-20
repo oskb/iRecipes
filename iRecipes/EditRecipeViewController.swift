@@ -35,7 +35,7 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
         super.init(nibName: nil, bundle: nil)
         self.recipe = self.dataManager.newRecipe()
         self.recipe?.name = ""
-        self.recipe?.difficulty = NSNumber.numberWithInt(1)
+        self.recipe?.difficulty = NSNumber(int: 1)
         self.recipe?.favorite = false
     }
     
@@ -129,7 +129,7 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
     private func addDifficultyView()
     {
         self.difficultyView = EditDifficultyView(frame: CGRectMake(self.scrollView.frame.size.width * 2, 0.0, self.scrollView.frame.size.width, self.scrollView.contentSize.height), delegate : self)
-        self.difficultyView!.setSelectedButton(self.recipe!.difficulty)
+        self.difficultyView!.setSelectedButton(self.recipe!.difficulty.integerValue)
         self.scrollView.addSubview(self.difficultyView!)
     }
     

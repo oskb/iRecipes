@@ -62,14 +62,17 @@ extension UIImageView
         }
     }
     
-    func setImageAnimated(image : UIImage)
+    func setImageAnimated(image : UIImage?)
     {
-        self.alpha = 0.0
-        self.image = image
-        
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            self.alpha = 1.0
-        })
+        if let img = image
+        {
+            self.alpha = 0.0
+            self.image = img
+            
+            UIView.animateWithDuration(1.0, animations: { () -> Void in
+                self.alpha = 1.0
+            })
+        }
     }
 }
 
