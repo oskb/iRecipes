@@ -44,7 +44,7 @@ class RecipeCell : UITableViewCell
         self.recipeImageView.contentMode = UIViewContentMode.ScaleAspectFill
         self.contentView.addSubview(self.recipeImageView)
         
-        self.recipeNameLabel.frame = CGRectMake(self.recipeImageView.frame.size.width + 10.0, 10.0, self.frame.size.width - 140.0, 30.0)
+        self.recipeNameLabel.frame = CGRectMake(self.recipeImageView.frame.size.width + 10.0, 10.0, self.frame.size.width - self.recipeImageView.frame.size.width - 20.0, 30.0)
         self.recipeNameLabel.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
         self.recipeNameLabel.font = self.nameFont
         self.recipeNameLabel.minimumScaleFactor = 0.6
@@ -53,7 +53,7 @@ class RecipeCell : UITableViewCell
         self.recipeNameLabel.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         self.contentView.addSubview(self.recipeNameLabel)
         
-        self.recipeDescriptionLabel.frame = CGRectMake(130.0, 40.0, self.frame.size.width - 140.0, 70.0)
+        self.recipeDescriptionLabel.frame = CGRectMake(self.recipeImageView.frame.size.width + 10.0, 40.0, self.frame.size.width - self.recipeImageView.frame.size.width - 20.0, 70.0)
         self.recipeDescriptionLabel.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
         self.recipeDescriptionLabel.font = self.descriptionFont
         self.recipeDescriptionLabel.numberOfLines = 0
@@ -63,7 +63,7 @@ class RecipeCell : UITableViewCell
         self.contentView.addSubview(self.recipeDescriptionLabel)
         
         let bottomBorderView = UIView()
-        bottomBorderView.frame = CGRectMake(125.0, 119.5, self.frame.size.width - 130.0, 0.5)
+        bottomBorderView.frame = CGRectMake(self.recipeImageView.frame.size.width + 5, self.recipeImageView.frame.size.height - 0.5, self.frame.size.width - self.recipeImageView.frame.size.width - 10.0, 0.5)
         bottomBorderView.backgroundColor = UIColor.lightGrayColor()
         bottomBorderView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         self.contentView.addSubview(bottomBorderView)
