@@ -205,7 +205,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
         let navigationController =
         UINavigationController(rootViewController: self.editRecipeViewController!)
         
-        self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+        self.navigationController?.presentViewController(navigationController!, animated: true, completion: nil)
     }
     
     //MARK: Handle favorite

@@ -116,7 +116,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         UINavigationController(rootViewController: editRecipeViewController)
         
         self.dismissSearchController()
-        self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+        self.navigationController?.presentViewController(navigationController!, animated: true, completion: nil)
     }
     
     func toggleShowFavoritesOrAll()
