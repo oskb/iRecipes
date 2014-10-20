@@ -23,7 +23,7 @@ class RecipeDismissalAnimator: NSObject, UIViewControllerAnimatedTransitioning
         UIView.animateKeyframesWithDuration(1.0, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.4, animations: { () -> Void in
-                fromViewController.imageView.center = CGPointMake(fromViewController.view.frame.size.width * 2, fromViewController.imageView.center.y)
+                fromViewController.recipeImageView.center = CGPointMake(fromViewController.view.frame.size.width * 2, fromViewController.recipeImageView.center.y)
             })
             
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.8, animations: { () -> Void in

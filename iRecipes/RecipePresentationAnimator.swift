@@ -8,7 +8,7 @@
 
 class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning
 {
-    private var imageViewOriginalCenter : CGPoint!
+    private var recipeImageViewOriginalCenter : CGPoint!
     private var toggleFavoriteViewOriginalCenter : CGPoint!
     private var difficultyLabelOriginalCenter : CGPoint!
     private var nameTextFieldOriginalCenter : CGPoint!
@@ -54,8 +54,8 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         toViewController.view.alpha = 0.0
         toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
         
-        self.imageViewOriginalCenter = toViewController.imageView.center
-        toViewController.imageView.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.imageView.center.y)
+        self.recipeImageViewOriginalCenter = toViewController.recipeImageView.center
+        toViewController.recipeImageView.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.recipeImageView.center.y)
         
         self.toggleFavoriteViewOriginalCenter = toViewController.favoriteStarView!.center
         toViewController.favoriteStarView!.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.favoriteStarView!.center.y)
@@ -74,7 +74,7 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     {
         UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             
-            toViewController.imageView.center = self.imageViewOriginalCenter
+            toViewController.recipeImageView.center = self.recipeImageViewOriginalCenter
             
             }, completion: nil)
     }
