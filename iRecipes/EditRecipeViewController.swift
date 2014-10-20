@@ -62,6 +62,8 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
         self.disableSaveButtonIfRecipeHasNoName()
     }
     
+    //MARK: Setup
+    
     private func addNavigationBarButtons()
     {
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancel")
@@ -146,6 +148,8 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
             text: self.recipe?.instructions)
         self.scrollView.addSubview(self.instructionsView!)
     }
+    
+    //MARK: Helpers
     
     private func disableSaveButtonIfRecipeHasNoName()
     {

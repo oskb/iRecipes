@@ -65,7 +65,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         let newRecipeButton = UIBarButtonItem(title: "New", style: UIBarButtonItemStyle.Plain, target: self, action: "openEditRecipeViewController")
         self.navigationItem.rightBarButtonItem = newRecipeButton
         
-        let favoriteOrAllButton = UIBarButtonItem(title: "Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "toggleFavorites")
+        let favoriteOrAllButton = UIBarButtonItem(title: "Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "toggleShowFavoritesOrAll")
         self.navigationItem.leftBarButtonItem = favoriteOrAllButton
     }
     
@@ -119,7 +119,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    func toggleFavorites()
+    func toggleShowFavoritesOrAll()
     {
         if self.navigationItem.leftBarButtonItem?.title == "Favorites"
         {

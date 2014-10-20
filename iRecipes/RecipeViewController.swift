@@ -12,7 +12,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
 {
     private var recipe : Recipe?
     private var interactivePopTransition = UIPercentDrivenInteractiveTransition()
-    private var isInteractive = false
+    private var isPopAnimationInteractive = false
     private var originalFavoriteValue = false
     private var editRecipeViewController : EditRecipeViewController?
     var favoriteStarView : FavoriteStarView?
@@ -21,7 +21,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     private let difficultyFont = UIFont(name: "AmericanTypeWriter", size: 14.0)
     private let textViewHeaderFont = UIFont(name: "AmericanTypeWriter", size: 18.0)
     private let textViewBodyFont = UIFont(name: "AmericanTypeWriter", size: 16.0)
-    let imageView = ImageView()
+    let recipeImageView = ImageView()
     let nameTextField = UITextField()
     let difficultyLabel = UILabel()
     let descriptionInstructionTextView = UITextView()
@@ -96,9 +96,9 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     
     private func addRecipeImageView()
     {
-        self.imageView.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, 200.0)
-        self.imageView.contentMode = UIViewContentMode.ScaleAspectFill
-        self.view.addSubview(self.imageView)
+        self.recipeImageView.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, 200.0)
+        self.recipeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        self.view.addSubview(self.recipeImageView)
     }
     
     private func addFavoriteStarView()
@@ -141,7 +141,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     
     private func setRecipeValuesOnComponents()
     {
-        self.imageView.loadImageAnimated(false, imageData: self.recipe?.photo)
+        self.recipeImageView.loadImageAnimated(false, imageData: self.recipe?.photo)
         self.nameTextField.text = self.recipe?.name
         
         if let difficulty = self.recipe?.difficulty
@@ -197,7 +197,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
         self.editRecipeViewController = EditRecipeViewController(recipe: recipe!)
         self.editRecipeViewController?.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
         
-        if self.imageView.isImageLoadingIndicatorAnimating()
+        if self.recipeImageView.isImageLoadingIndicatorAnimating()
         {
             self.editRecipeViewController?.isImageLoading = true
         }
@@ -261,15 +261,15 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     
     func startImageLoadingIndicator()
     {
-        self.imageView.startImageLoadingIndicator()
+        self.recipeImageView.startImageLoadingIndicator()
     }
     
     func loadRecipeImageForRecipe(recipe : Recipe)
     {
         if recipe.id == self.recipe?.id
         {
-            self.imageView.stopImageLoadingIndicator()
-            self.imageView.loadImageAnimated(true, imageData: self.recipe?.photo)
+            self.recipeImageView.stopImageLoadingIndicator()
+            self.recipeImageView.loadImageAnimated(true, imageData: self.recipe?.photo)
             self.editRecipeViewController?.loadRecipeImageForRecipe(recipe)
         }
     }
@@ -278,7 +278,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     
     func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?
     {
-        if  self.isInteractive
+        if  self.isPopAnimationInteractive
         {
             return self.interactivePopTransition
         }
@@ -307,7 +307,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
         
         if recognizer.state == UIGestureRecognizerState.Began
         {
-            self.isInteractive = true
+            self.isPopAnimationInteractive = true
             self.interactivePopTransition = UIPercentDrivenInteractiveTransition()
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -326,7 +326,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
                 self.interactivePopTransition.cancelInteractiveTransition()
             }
             
-            self.isInteractive = false
+            self.isPopAnimationInteractive = false
         }
     }
 }
