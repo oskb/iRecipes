@@ -129,13 +129,17 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
     
     private func addDescriptionView()
     {
-        self.descriptionView = EditDescriptionInstructionView(frame: CGRectMake(self.scrollView.frame.size.width * 3, 0.0, self.scrollView.frame.size.width, self.scrollView.contentSize.height), name: "Description:", text: self.recipe?.descr)
+        self.descriptionView = EditDescriptionInstructionView(frame: CGRectMake(self.scrollView.frame.size.width * 3, 0.0, self.scrollView.frame.size.width, self.scrollView.contentSize.height),
+            name: "Description:",
+            text: self.recipe?.descr)
         self.scrollView.addSubview(self.descriptionView!)
     }
     
     private func addInstructionsView()
     {
-        self.instructionsView = EditDescriptionInstructionView(frame: CGRectMake(self.scrollView.frame.size.width * 4, 0.0, self.scrollView.frame.size.width, self.scrollView.contentSize.height), name: "Instructions:", text: self.recipe?.instructions)
+        self.instructionsView = EditDescriptionInstructionView(frame: CGRectMake(self.scrollView.frame.size.width * 4, 0.0, self.scrollView.frame.size.width, self.scrollView.contentSize.height),
+            name: "Instructions:",
+            text: self.recipe?.instructions)
         self.scrollView.addSubview(self.instructionsView!)
     }
     
@@ -196,9 +200,7 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
     func cancel()
     {
         self.removeRecipeIfNew()
-        self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func save()
@@ -216,9 +218,7 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
                 self.dataManager.updateRecipe(self.recipe!)
             }
             
-            self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                
-            })
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         }
         else
         {
@@ -251,9 +251,7 @@ class EditRecipeViewController : UIViewController, UINavigationControllerDelegat
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController!)
     {
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     //MARK: UIScrollViewDelegate

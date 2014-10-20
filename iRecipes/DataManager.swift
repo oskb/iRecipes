@@ -19,18 +19,18 @@ class DataManager
         return Singleton.instance
     }
     
-    let imageCompressionRate = CGFloat(0.0)
     let entityName = "Recipe"
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
-    private let manager = AFHTTPSessionManager(baseURL: NSURL(string: "http://hyper-recipes.herokuapp.com"))
+    private let sessionManager = AFHTTPSessionManager(baseURL: NSURL(string: "http://hyper-recipes.herokuapp.com"))
+    private let imageCompressionRate = CGFloat(0.0)
     
     private var imageDownloadQueue : NSMutableArray = NSMutableArray()
     private var numberOfRequests = 0
     
     init()
     {
-        self.manager.requestSerializer = AFJSONRequestSerializer()
-        self.manager.responseSerializer = AFJSONResponseSerializer()
+        self.sessionManager.requestSerializer = AFJSONRequestSerializer()
+        self.sessionManager.responseSerializer = AFJSONResponseSerializer()
     }
     
     //MARK: WebService
@@ -50,7 +50,7 @@ class DataManager
             var recipeIdsOnServer = Array<Int>()
             let getString = "/recipes"
             
-            self.manager.GET(
+            self.sessionManager.GET(
                 getString,
                 parameters: nil,
                 success: { (operation: NSURLSessionDataTask!,
@@ -127,7 +127,7 @@ class DataManager
             let postString = "/recipes"
             let params = self.parameterDictionaryForRecipe(recipe)
             
-            self.manager.POST(postString, parameters: params, constructingBodyWithBlock: { (multipartFormData: AFMultipartFormData!) -> Void in
+            self.sessionManager.POST(postString, parameters: params, constructingBodyWithBlock: { (multipartFormData: AFMultipartFormData!) -> Void in
                 
                 if let imageData = recipe.photo
                 {
@@ -160,7 +160,7 @@ class DataManager
          
             let postString = "/recipes/\(recipe.id.integerValue)"
             let params = self.parameterDictionaryForRecipe(recipe)
-            let urlString = "\(self.manager.baseURL)\(postString)"
+            let urlString = "\(self.sessionManager.baseURL)\(postString)"
             let requestOperationManager = AFHTTPRequestOperationManager()
             var error : NSError?
             
@@ -199,7 +199,7 @@ class DataManager
             self.startNetworkLoadingIndicator()
             
             let postString = "/recipes/\(recipeId)"
-            self.manager.DELETE(postString, parameters: nil, success: { (operation: NSURLSessionDataTask!,
+            self.sessionManager.DELETE(postString, parameters: nil, success: { (operation: NSURLSessionDataTask!,
                 responseObject: AnyObject!) -> Void in
                 
                     self.stopNetworkLoadingIndicator()

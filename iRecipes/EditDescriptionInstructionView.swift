@@ -10,7 +10,7 @@ import UIKit
 
 class EditDescriptionInstructionView : BaseEditView
 {
-    let textView = UITextView()
+    private let textView = UITextView()
     
     init(frame: CGRect, name : String, text : String?)
     {

@@ -8,11 +8,11 @@
 
 class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning
 {
-    var imageViewOriginalCenter : CGPoint!
-    var toggleFavoriteViewOriginalCenter : CGPoint!
-    var difficultyLabelOriginalCenter : CGPoint!
-    var nameTextFieldOriginalCenter : CGPoint!
-    var textViewOriginalCenter : CGPoint!
+    private var imageViewOriginalCenter : CGPoint!
+    private var toggleFavoriteViewOriginalCenter : CGPoint!
+    private var difficultyLabelOriginalCenter : CGPoint!
+    private var nameTextFieldOriginalCenter : CGPoint!
+    private var textViewOriginalCenter : CGPoint!
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning)
     {
@@ -20,7 +20,6 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)! as RecipeViewController
         let containerView = transitionContext.containerView()
         let animationDuration = self.transitionDuration(transitionContext)
-        
         
         self.setInitialValuesOnToViewController(toViewController, transitionContext: transitionContext)
         containerView.addSubview(toViewController.view)
@@ -56,19 +55,19 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
         
         self.imageViewOriginalCenter = toViewController.imageView.center
-        toViewController.imageView.center = CGPointMake(1000.0, toViewController.imageView.center.y)
+        toViewController.imageView.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.imageView.center.y)
         
         self.toggleFavoriteViewOriginalCenter = toViewController.favoriteStarView!.center
-        toViewController.favoriteStarView!.center = CGPointMake(toViewController.view.frame.size.width * 2, toViewController.favoriteStarView!.center.y)
+        toViewController.favoriteStarView!.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.favoriteStarView!.center.y)
         
         self.difficultyLabelOriginalCenter = toViewController.difficultyLabel.center
-        toViewController.difficultyLabel.center = CGPointMake(1000.0, toViewController.difficultyLabel.center.y)
+        toViewController.difficultyLabel.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.difficultyLabel.center.y)
         
         self.nameTextFieldOriginalCenter = toViewController.nameTextField.center
-        toViewController.nameTextField.center = CGPointMake(1000.0, toViewController.nameTextField.center.y)
+        toViewController.nameTextField.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.nameTextField.center.y)
         
         self.textViewOriginalCenter = toViewController.descriptionInstructionTextView.center
-        toViewController.descriptionInstructionTextView.center = CGPointMake(1000.0, toViewController.descriptionInstructionTextView.center.y)
+        toViewController.descriptionInstructionTextView.center = CGPointMake(toViewController.view.frame.size.width * 3, toViewController.descriptionInstructionTextView.center.y)
     }
     
     private func animateInImage(toViewController : RecipeViewController)
@@ -77,7 +76,7 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
             
             toViewController.imageView.center = self.imageViewOriginalCenter
             
-            }, completion: { (Bool) -> Void in })
+            }, completion: nil)
     }
     
     private func animateInFavoriteStar(toViewController : RecipeViewController)
@@ -86,7 +85,7 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
             
             toViewController.favoriteStarView!.center = self.toggleFavoriteViewOriginalCenter
             
-            }, completion: { (Bool) -> Void in })
+            }, completion: nil)
     }
     
     private func animateInDifficulty(toViewController : RecipeViewController)
@@ -95,7 +94,7 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
             
             toViewController.difficultyLabel.center = self.difficultyLabelOriginalCenter
             
-            }, completion: { (Bool) -> Void in })
+            }, completion: nil)
     }
     
     private func animateInName(toViewController : RecipeViewController)
@@ -104,7 +103,7 @@ class RecipePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
             
             toViewController.nameTextField.center = self.nameTextFieldOriginalCenter
             
-            }, completion: { (Bool) -> Void in })
+            }, completion: nil)
     }
     
     private func animateInDescriptionAndInstructionsThenFinishTransition(toViewController : RecipeViewController, containerView : UIView, transitionContext : UIViewControllerContextTransitioning)

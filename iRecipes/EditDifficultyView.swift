@@ -77,6 +77,21 @@ class EditDifficultyView : BaseEditView
         return button
     }
     
+    private func buttonsInSubViews() -> [UIButton]
+    {
+        var buttonArray = Array<UIButton>()
+        
+        for view in self.subviews
+        {
+            if view.isKindOfClass(UIButton)
+            {
+                buttonArray.append(view as UIButton)
+            }
+        }
+        
+        return buttonArray
+    }
+    
     func buttonTapped(button : UIButton)
     {
         if !button.selected
@@ -85,15 +100,12 @@ class EditDifficultyView : BaseEditView
            
             self.delegate!.difficultyChanged(button.tag)
             
-            for view in self.subviews
+            for btn in self.buttonsInSubViews()
             {
-                if view.isKindOfClass(UIButton)
+                if !btn.isEqual(button)
                 {
-                    if !view.isEqual(button)
-                    {
-                        let otherButton = view as UIButton
-                        otherButton.selected = false
-                    }
+                    let otherButton = btn
+                    otherButton.selected = false
                 }
             }
         }
@@ -101,15 +113,11 @@ class EditDifficultyView : BaseEditView
     
     func setSelectedButton(difficulty : Int)
     {
-        for view in self.subviews
+        for button in self.buttonsInSubViews()
         {
-            if view.isKindOfClass(UIButton)
+            if button.tag == difficulty
             {
-                if view.tag == difficulty
-                {
-                    let button = view as UIButton
-                    button.selected = true
-                }
+                button.selected = true
             }
         }
     }

@@ -22,6 +22,7 @@ extension UIImage
         
         var image:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         return image
     }
     
@@ -31,6 +32,7 @@ extension UIImage
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
         var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         return newImage
     }
 }
@@ -49,12 +51,7 @@ extension UIImageView
                     
                     if animated
                     {
-                        self.alpha = 0.0
-                        self.image = image
-                        
-                        UIView.animateWithDuration(1.0, animations: { () -> Void in
-                            self.alpha = 1.0
-                        })
+                        self.setImageAnimated(image)
                     }
                     else
                     {
@@ -63,6 +60,16 @@ extension UIImageView
                 })
             }
         }
+    }
+    
+    func setImageAnimated(image : UIImage)
+    {
+        self.alpha = 0.0
+        self.image = image
+        
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            self.alpha = 1.0
+        })
     }
 }
 

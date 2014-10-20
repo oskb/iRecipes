@@ -10,7 +10,7 @@ import UIKit
 
 class FavoriteStarView : UIView
 {
-    var starLayer : CALayer?
+    private var starLayer : CALayer?
     
     init(frame: CGRect, starColor : UIColor)
     {

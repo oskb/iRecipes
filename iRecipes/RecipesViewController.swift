@@ -30,7 +30,6 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.addNavigationBarButtons()
         self.setupTableView()
-        self.loadRecipesFromCoreDataAndRefreshTableView()
         self.setupSearchController()
     }
     
@@ -83,6 +82,8 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         self.refreshControl.backgroundColor = UIColor.whiteColor()
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.recipesTableView.addSubview(refreshControl)
+        
+        self.loadRecipesFromCoreDataAndRefreshTableView()
     }
     
     private func setupSearchController()
@@ -101,9 +102,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private func dismissSearchController()
     {
-        self.searchController.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
+        self.searchController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func openEditRecipeViewController()
@@ -117,9 +116,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
         UINavigationController(rootViewController: editRecipeViewController)
         
         self.dismissSearchController()
-        self.navigationController?.presentViewController(navigationController, animated: true, completion: { () -> Void in
-            
-        })
+        self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
     }
     
     func toggleFavorites()
@@ -250,12 +247,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource, UITableVie
                     
                     if let cell = self.cellForRecipe(recipe)
                     {
-                        cell.recipeImageView.alpha = 0.0
-                        cell.recipeImageView.image = thumbnail
-                        
-                        UIView.animateWithDuration(1.0, animations: { () -> Void in
-                            cell.recipeImageView.alpha = 1.0
-                        })
+                        cell.recipeImageView.setImageAnimated(thumbnail)
                     }
                 })
             }

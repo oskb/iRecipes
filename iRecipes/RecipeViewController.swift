@@ -145,6 +145,11 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
             self.difficultyLabel.text = "Difficulty: \(difficulty)"
         }
         
+        self.descriptionInstructionTextView.attributedText = self.descriptionAndInstructionText()
+    }
+    
+    private func descriptionAndInstructionText() -> NSAttributedString
+    {
         let descriptionAndInstrucionText = NSMutableAttributedString()
         
         if let description = self.recipe?.descr
@@ -166,7 +171,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
             descriptionAndInstrucionText.insertAttributedString(instructionBodyString, atIndex: descriptionAndInstrucionText.length)
         }
         
-        self.descriptionInstructionTextView.attributedText = descriptionAndInstrucionText
+        return descriptionAndInstrucionText
     }
     
     private func attributedHeaderStringWithText(string : String) -> NSAttributedString
@@ -196,9 +201,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
         let navigationController =
         UINavigationController(rootViewController: self.editRecipeViewController!)
         
-        self.navigationController?.presentViewController(navigationController, animated: true, completion: { () -> Void in
-            
-        })
+        self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
     }
     
     //MARK: Handle favorite
