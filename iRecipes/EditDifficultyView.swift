@@ -20,6 +20,8 @@ class EditDifficultyView : BaseEditView
     var difficulty3Button = UIButton()
     var delegate : EditDifficultViewDelegate?
     
+    private let buttonTitleFont = UIFont(name: "AmericanTypeWriter", size: 40.0)
+    
     init(frame: CGRect, delegate: EditDifficultViewDelegate)
     {
         super.init(frame: frame)
@@ -68,7 +70,7 @@ class EditDifficultyView : BaseEditView
         button.setBackgroundImage(nil, forState: UIControlState.Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
         button.setBackgroundImage(UIImage().imageFromColor(button.tintColor!, size: button.frame.size), forState: UIControlState.Selected)
-        button.titleLabel?.font = UIFont(name: "AmericanTypeWriter", size: 40.0)
+        button.titleLabel?.font = self.buttonTitleFont
         button.layer.borderColor = button.tintColor?.CGColor
         button.layer.borderWidth = 1.5
         

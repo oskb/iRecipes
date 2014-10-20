@@ -17,6 +17,7 @@ protocol EditNameViewDelegate
 class EditNameView: BaseEditView, UITextFieldDelegate
 {
     private let nameTextField = UITextField()
+    private let nameFont = UIFont(name: "AmericanTypeWriter", size: 30.0)
     private var delegate : EditNameViewDelegate?
     
     init(frame: CGRect, delegate : EditNameViewDelegate?)
@@ -31,7 +32,7 @@ class EditNameView: BaseEditView, UITextFieldDelegate
     {
         self.nameTextField.frame = CGRectMake(0.0, 0.0, self.frame.size.width - 20.0, 80.0)
         self.nameTextField.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 + super.nameLabel.frame.size.height/2)
-        self.nameTextField.font = UIFont(name: "AmericanTypeWriter", size: 30.0)
+        self.nameTextField.font = self.nameFont
         self.nameTextField.textColor = self.nameTextField.tintColor
         self.nameTextField.adjustsFontSizeToFitWidth = true
         self.nameTextField.textAlignment = NSTextAlignment.Center

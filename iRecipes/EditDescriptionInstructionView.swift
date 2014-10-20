@@ -11,6 +11,7 @@ import UIKit
 class EditDescriptionInstructionView : BaseEditView
 {
     private let textView = UITextView()
+    private let textViewFont = UIFont(name: "AmericanTypeWriter", size: 18.0)
     
     init(frame: CGRect, name : String, text : String?)
     {
@@ -33,7 +34,7 @@ class EditDescriptionInstructionView : BaseEditView
         self.textView.frame = CGRectMake(10.0, 80.0, self.frame.size.width - 20.0, self.frame.size.height - 80.0)
         self.textView.textAlignment = NSTextAlignment.Center
         self.textView.textColor = self.textView.tintColor
-        self.textView.font = UIFont(name: "AmericanTypeWriter", size: 18.0)
+        self.textView.font = self.textViewFont
         self.textView.editable = true
         self.addSubview(self.textView)
     }

@@ -11,11 +11,12 @@ import UIKit
 class BaseEditView : UIView
 {
     let nameLabel = UILabel()
+    private let nameLabelFont = UIFont(name: "AmericanTypeWriter", size: 36.0)
     
     func addNameLabel(name : String)
     {
         nameLabel.frame = CGRectMake(0.0, 20.0, self.frame.size.width, 50.0)
-        nameLabel.font = UIFont(name: "AmericanTypeWriter", size: 36.0)
+        nameLabel.font = self.nameLabelFont
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.textAlignment = NSTextAlignment.Center
         nameLabel.text = name

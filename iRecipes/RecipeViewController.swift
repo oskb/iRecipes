@@ -17,6 +17,10 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     private var editRecipeViewController : EditRecipeViewController?
     var favoriteStarView : FavoriteStarView?
     
+    private let nameFont = UIFont(name: "AmericanTypeWriter", size: 24.0)
+    private let difficultyFont = UIFont(name: "AmericanTypeWriter", size: 14.0)
+    private let textViewHeaderFont = UIFont(name: "AmericanTypeWriter", size: 18.0)
+    private let textViewBodyFont = UIFont(name: "AmericanTypeWriter", size: 16.0)
     let imageView = ImageView()
     let nameTextField = UITextField()
     let difficultyLabel = UILabel()
@@ -110,7 +114,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     private func addNameTextField()
     {
         self.nameTextField.frame = CGRectMake(10.0, 220.0, self.view.frame.size.width - 20.0, 30.0)
-        self.nameTextField.font = UIFont(name: "AmericanTypeWriter", size: 24.0)
+        self.nameTextField.font = self.nameFont
         self.nameTextField.adjustsFontSizeToFitWidth = true
         self.nameTextField.textAlignment = NSTextAlignment.Center
         self.nameTextField.text = self.recipe?.name
@@ -121,7 +125,7 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     private func addDifficultyLabel()
     {
         self.difficultyLabel.frame = CGRectMake(self.view.frame.size.width - 100.0, 200.0, 100.0, 20.0)
-        self.difficultyLabel.font = UIFont(name: "AmericanTypeWriter", size: 14.0)
+        self.difficultyLabel.font = self.difficultyFont
         self.difficultyLabel.adjustsFontSizeToFitWidth = true
         self.difficultyLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(self.difficultyLabel)
@@ -177,13 +181,13 @@ class RecipeViewController : UIViewController, UINavigationControllerDelegate
     private func attributedHeaderStringWithText(string : String) -> NSAttributedString
     {
         return NSAttributedString(string: "\(string)", attributes: [NSForegroundColorAttributeName : self.descriptionInstructionTextView.tintColor,
-            NSFontAttributeName : UIFont(name: "AmericanTypeWriter", size: 18.0)])
+            NSFontAttributeName : self.textViewHeaderFont])
     }
     
     private func attributedBodyStringWithText(string : String) ->NSAttributedString
     {
         return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName : UIColor.blackColor(),
-            NSFontAttributeName : UIFont(name: "AmericanTypeWriter", size: 16.0)])
+            NSFontAttributeName : self.textViewBodyFont])
     }
     
     //MARK: Edit

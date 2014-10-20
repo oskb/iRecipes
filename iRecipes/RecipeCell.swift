@@ -14,6 +14,9 @@ class RecipeCell : UITableViewCell
     let recipeNameLabel = UILabel()
     let recipeDescriptionLabel = UILabel()
     
+    private let nameFont = UIFont(name: "AmericanTypeWriter", size: 22.0)
+    private let descriptionFont = UIFont(name: "AmericanTypeWriter", size: 13.0)
+    
     override init()
     {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
@@ -43,7 +46,7 @@ class RecipeCell : UITableViewCell
         
         self.recipeNameLabel.frame = CGRectMake(self.recipeImageView.frame.size.width + 10.0, 10.0, self.frame.size.width - 140.0, 30.0)
         self.recipeNameLabel.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
-        self.recipeNameLabel.font = UIFont(name: "AmericanTypeWriter", size: 22.0)
+        self.recipeNameLabel.font = self.nameFont
         self.recipeNameLabel.minimumScaleFactor = 0.6
         self.recipeNameLabel.adjustsFontSizeToFitWidth = true
         self.recipeNameLabel.textAlignment = NSTextAlignment.Left
@@ -52,7 +55,7 @@ class RecipeCell : UITableViewCell
         
         self.recipeDescriptionLabel.frame = CGRectMake(130.0, 40.0, self.frame.size.width - 140.0, 70.0)
         self.recipeDescriptionLabel.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
-        self.recipeDescriptionLabel.font = UIFont(name: "AmericanTypeWriter", size: 13.0)
+        self.recipeDescriptionLabel.font = self.descriptionFont
         self.recipeDescriptionLabel.numberOfLines = 0
         self.recipeDescriptionLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.recipeDescriptionLabel.textAlignment = NSTextAlignment.Left
